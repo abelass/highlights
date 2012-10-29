@@ -1,0 +1,107 @@
+#CACHE{0}
+
+
+	<div class="formulaire_spip formulaire_editer" id="editer_highlights">
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	<form action="#ENV{action}" method="post"><div>
+    	#ACTION_FORMULAIRE{#ENV{action}}
+
+    	<ul>
+    				<li class="editer_texte" >
+			<div>
+				<p>
+				 [(#ENV{image_fr}|?{[(#ENV{eliminer_image_fr}|oui)<label><:highlights:ajouter_logo_fr:></label>
+				 <div><input type="file" name="upload_image_fr" id="image_fr"></div>],<label><:highlights:ajouter_logo_fr:></label>
+				 <div><input type="file" name="upload_image_fr" id="image_fr-->"></div>})]
+				 
+				 [(#ENV{image_fr}|oui)[(#ENV{eliminer_image_fr}|non)
+				 	<label><:highlights:supprimer_photo_fr:></label><br/>
+				 
+
+				 	<img style="float:left;" src="[(#ENV{image_fr})]" alt="image fr"/>
+				 	<div class="choix" style="float:left;" >
+				 		<input type='hidden'   name='image_fr' value="#ENV{image_fr}"/>
+				  		<input type='checkbox' class="checkbox"   name='eliminer_image_fr' id='eliminer_image_fr'/>
+				 		<label style="display:inline;" for="image_fr"><:highlights:oui:></label>
+				 	</div>]]
+				</p>
+				
+				<p style="clear:left;"><br/>			
+				 [(#ENV{image_nl}|?{[(#ENV{eliminer_image_nl}|oui)<label><:highlights:ajouter_logo_nl:></label>
+				 <div><input type="file" name="upload_image_nl" id="image_nl"></div>],<label><:highlights:ajouter_logo_nl:></label>
+				 <div><input type="file" name="upload_image_nl" id="image_nl"></div>})]
+
+		 
+				 [(#ENV{image_nl}|oui)[(#ENV{eliminer_image_nl}|non)
+				 <label>[(#ENV{image_nl}|=={#ENV{image_fr}}|?{<:highlights:garder_photo_nl:>,<:highlights:supprimer_photo_nl:>})]</label><br/>
+				 
+
+				 <img style="float:left;" src="[(#ENV{image_nl})]" alt="image nl"/>
+				 <div class="choix" style="float:left;>
+				 	[(#ENV{image_nl}|=={#ENV{image_fr}}|non)
+				 	<input type='hidden'   name='image_nl' value="#ENV{image_nl}"/>
+				  	<input type='checkbox' class="checkbox"   name='eliminer_image_nl' id='eliminer_image_nl'/>]
+				 	[(#ENV{image_nl}|=={#ENV{image_fr}}|oui)
+				 	<input type='hidden'   name='image_nl' value="#ENV{image_nl}"/>
+				  	<input type='checkbox' class="checkbox"   name='garder_image_nl' id='garder_image_nl'/>]				  
+					 <label style="display:inline;" for="image_nl"><:highlights:oui:></label>
+				 </div>]]
+			 	</p>
+			 	
+				<p style="clear:left;">	<br/>				 					 
+				 [(#ENV{image_en}|?{[(#ENV{eliminer_image_en}|oui)<label><:highlights:ajouter_logo_en:></label>
+				 <div><input type="file" name="upload_image_en" id="image_en"></div>],<label><:highlights:ajouter_logo_en:></label>
+				 <div><input type="file" name="upload_image_en" id="image_en"></div>})]
+
+				 [(#ENV{image_en}|oui)[(#ENV{eliminer_image_en}|non)
+				 <label>[(#ENV{image_en}|=={#ENV{image_fr}}|?{<:highlights:garder_photo_en:>,<:highlights:supprimer_photo_en:>})]</label><br/>
+				 
+	
+				 	<img style="float:left;" src="[(#ENV{image_en})]" alt="image nl"/></div>
+				 <div class="choix" style="float:left;">
+				 [(#ENV{image_en}|=={#ENV{image_fr}}|non)
+				 <input type='hidden'   name='image_en' value="#ENV{image_en}"/>
+				  <input type='checkbox' class="checkbox"   name='eliminer_image_en' id='eliminer_image_en'/>]
+				 [(#ENV{image_en}|=={#ENV{image_fr}}|oui)
+				 <input type='hidden'   name='image_en' value="#ENV{image_en}"/>
+				  <input type='checkbox' class="checkbox"   name='garder_image_en' id='garder_image_en'/>]				  
+				 <label style="display:inline;" for="image_en"><:highlights:oui:></label>
+				 </div>]]
+			 	</p>					 
+			</div>							
+			</li>
+
+
+			<script type="text/javascript" src="jquery-latest.pack.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+       
+        //Hide div w/id extra
+       $("#garder_image_nl").css("display","none");
+       $("#garder_image_en").css("display","none");
+       
+        // Add onclick handler to checkbox w/id checkme
+       $("#eliminer_image_fr").click(function(){
+       
+        // If checked
+        if ($("#eliminer_image_fr").is(":checked"))
+        {
+            //show the hidden div
+            $("#garder_image_nl").css("display","inline");
+            $("#garder_image_en").css("display","inline");            
+        }
+        else
+        {     
+            //otherwise, hide it
+            $("#garder_image_nl").hide("fast");
+            $("#garder_image_en").hide("fast");            
+        }
+      });
+   
+    });
+     </script>
+</ul>
+    	<p class="boutons"><input type="submit" class="submit" value="<:pass_ok:>" /></p>
+	</div>
+	</form>

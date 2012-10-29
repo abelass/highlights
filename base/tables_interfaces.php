@@ -1,0 +1,16 @@
+<?php
+
+function highlights_init_tables_interfaces($tables_interfaces){
+
+$tables_interfaces['table_des_tables']['highlights_principales'] = 'highlights_principales';
+$tables_interfaces['table_des_tables']['highlights_langues'] = 'highlights_langues';
+$tables_interfaces['table_des_tables']['highlights_rubriques'] = 'highlights_rubriques';
+
+$tables_interfaces['tables_jointures']['principales'][] = 'principales_langues';
+$tables_interfaces['tables_jointures']['langues'][] = 'principales_langues';
+
+	return $tables_interfaces;
+}
+
+
+?>

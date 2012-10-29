@@ -1,0 +1,49 @@
+<!DOCTYPE webproject>
+<webproject>
+  <project type="Local" name="plugin highlights" encoding="utf8" >
+    <upload/>
+    <author/>
+    <email/>
+    <defaultDTD>-//W3C//DTD XHTML 1.0 Strict//EN</defaultDTD>
+    <item url="base/" uploadstatus="1" />
+    <item url="base/installation.php" uploadstatus="1" />
+    <item url="base/tables_auxiliaires.php" uploadstatus="1" />
+    <item url="base/tables_interfaces.php" uploadstatus="1" />
+    <item url="base/tables_principales.php" uploadstatus="1" />
+    <item url="exec/" uploadstatus="1" />
+    <item url="exec/highlights_edit.php" uploadstatus="1" />
+    <item url="formulaires/" uploadstatus="1" />
+    <item url="formulaires/editer_highlight.html" uploadstatus="1" />
+    <item url="formulaires/editer_highlight.php" uploadstatus="1" />
+    <item url="formulaires/logo_highlight.html" uploadstatus="1" />
+    <item url="formulaires/logo_highlight.php" uploadstatus="1" />
+    <item url="img/" uploadstatus="1" />
+    <item url="img/emblem-favorite.png" uploadstatus="1" />
+    <item url="img/fleche-bas.gif" uploadstatus="1" />
+    <item url="img/fleche-haut.gif" uploadstatus="1" />
+    <item url="img/logo_petit.png" uploadstatus="1" />
+    <item url="img/logo.png" uploadstatus="1" />
+    <item url="inc/" uploadstatus="1" />
+    <item url="inc/inc-bloc_rubrique.html" uploadstatus="1" />
+    <item url="lang/" uploadstatus="1" />
+    <item url="lang/highlights_fr.php" uploadstatus="1" />
+    <item url="prive/" uploadstatus="1" />
+    <item url="prive/bloc_rubrique.html" uploadstatus="1" />
+    <item url="prive/editer_highlight.html" uploadstatus="1" />
+    <item url="prive/inc_header.html" uploadstatus="1" />
+    <item url="editer_highlight.html" uploadstatus="1" />
+    <item url="form_highlights.html" uploadstatus="1" />
+    <item url="highlights_fonctions.php" uploadstatus="1" />
+    <item url="highlights.html" uploadstatus="1" />
+    <item url="highlights_pipeline.php" uploadstatus="1" />
+    <item url="plugin.xml" uploadstatus="1" />
+    <item url="" uploadstatus="1" />
+    <templates>templates/</templates>
+    <toolbars>toolbars/</toolbars>
+    <annotations>
+      <annotation line="4" receiver="" url="formulaires/logo_highlight.php" text="Charge les valeurs par défaut pour le fomulaire editer objet" />
+      <annotation line="4" receiver="" url="formulaires/editer_highlight.php" text="Charge les valeurs par défaut pour le fomulaire editer objet */" />
+    </annotations>
+    <item url="ckeditor4spip.js.html" uploadstatus="1" />
+  </project>
+</webproject>

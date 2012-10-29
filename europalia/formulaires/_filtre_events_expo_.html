@@ -1,0 +1,37 @@
+<form action="spip.php" method="get" id="filtre_events">
+	<input type="hidden" name="page" value="agenda-expo" />
+	<input type="hidden" name="id_rubrique" value="12" />
+	<div class="blocs_flottants">
+		<div class="next">
+			<select name="id_mot">
+				<option value=""><:villes:></option>
+				#SET{liste_villes,#ARRAY}
+				<BOUCLE_chville(MOTS){id_groupe=6}>
+					<BOUCLE_datesVille(EVENEMENTS){id_mot}{0,1}> </BOUCLE_datesVille>
+						#SET{ville,#ARRAY{#TITRE,#ID_MOT}}
+						#SET_MERGE{liste_villes,#GET{liste_villes},#GET{ville}}
+					</B_datesVille>
+				</BOUCLE_chville>
+				<BOUCLE_listeVilles(POUR){tableau #GET{liste_villes}}{par cle}>
+					<BOUCLE_ville(MOTS){id_mot=#VALEUR}>
+						<option value="#ID_MOT" [(#ENV{id_mot}|=={#ID_MOT}|oui)selected="selected"]>[(#TITRE|supprimer_numero)]</option>
+					</BOUCLE_ville>
+				</BOUCLE_listeVilles>
+			</select>
+		</div>
+		<div class="next">
+			<select name="id_theme">
+				<option value=""><:themes:></option>
+				[(#REM) <!-- Ne pas afficher le theme "Autres" -->]
+				<BOUCLE_theme(MOTS){id_groupe=5}{par num titre}{id_mot != 460}>
+				<option value="#ID_MOT" [(#ENV{id_theme}|=={#ID_MOT}|oui)selected="selected"]>[(#TITRE|supprimer_numero)]</option>
+				</BOUCLE_theme>
+			</select>
+		</div>
+	</div>
+	<div class="next">
+		<input type="submit" value="<:rechercher:>"  class="submit" />
+	</div>
+	<div class="clear"><span></span></div>
+</form>
+	

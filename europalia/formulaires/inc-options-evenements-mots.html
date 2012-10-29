@@ -1,0 +1,29 @@
+[(#SET{selected,''})]
+<BOUCLE_ville(MOTS spip_mots_evenements){id_evenement}{id_groupe}>
+	[(#SET{selected,#ID_MOT})]
+</BOUCLE_ville>
+<?php $t_villes = array(
+	0 => 0
+<BOUCLE_villes(MOTS){id_groupe}{par num titre}>
+	,'[(#TITRE|supprimer_numero|addslashes)]' => '#ID_MOT'
+</BOUCLE_villes>
+); 
+unset($t_villes[0]);
+
+if (!function_exists('cmp')) {
+	function cmp($a,$b) {
+		if (strtolower($a) == strtolower($b)) return 0;
+		elseif (strtolower($a) > strtolower($b)) return 1;
+			else return -1;
+	}
+}
+
+uksort($t_villes,"cmp");
+
+foreach ($t_villes as $nom => $id) {
+	echo "<option value='$id' "
+		. ($id=='#GET{selected}'?"selected='selected'":'')
+		. ">$nom</option>\n";
+}
+
+?>

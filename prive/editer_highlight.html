@@ -1,0 +1,50 @@
+[(#REM) Les suppressions]
+
+[(#ENV{eliminer_highlight}|oui)
+[(#ENV{id_highlight}|supprimer_highlight)]
+]
+
+
+[(#ENV{eliminer_langue}|oui)[(#ENV{id_highlight}|supprimer_langue{#ENV{eliminer_langue}})]]
+
+
+
+<h1><:highlights:gestion_highlights:></h1>
+
+
+
+<B_highlights>
+<h2><:highlights:highlights_actuels:></h2>
+<div class="cadre cadre-liste">
+
+[<p class="pagination">(#PAGINATION)</p>]
+<ul style="list-style:none;">
+<li><b><a href="?exec=highlights_edit&edition=oui#editer_highlights"><:highlights:ajouter_highlight:></a></b><br/><br/></li>
+<BOUCLE_highlights(HIGHLIGHTS_PRINCIPALES) {pagination 10}>
+			<BOUCLE_highlights_langues_compteur_tout(HIGHLIGHTS_RUBRIQUES) {id_highlight}{id_rubrique!=0}>
+			</BOUCLE_highlights_langues_compteur_tout>	
+			#SET{nombre_rub,#TOTAL_BOUCLE}
+			</B_highlights_langues_compteur_tout>	
+
+	<li style="border-bottom: 1px dashed  #666666;width:98%;padding-bottom:2px;" ><h3 style="font-size:12px;margin-bottom:0;"><BOUCLE_highlights_langues(HIGHLIGHTS_LANGUES) {id_highlight} {par lang} {', '}>
+			
+		[(#TITRE|supprimer_numero)] #LANG<a [(#GET{nombre_rub}|oui) onclick="return confirm('<:highlights:avis_rubriques{nr_rubriques=#GET{nombre_rub}}:>')"]  href="[(#SELF|parametre_url{id_highlight,#ID_HIGHLIGHT}|parametre_url{eliminer_highlight,''}|parametre_url{eliminer_langue,#LANG})]" class="ajax"><img src="#CHEMIN{img_pack/item-remove.png}"/></a>
+		</BOUCLE_highlights_langues>
+		<a href="[(#SELF|parametre_url{id_highlight,#ID_HIGHLIGHT}|parametre_url{eliminer_highlight,oui}|parametre_url{eliminer_langue,''})]" class="ajax"><:highlights:eliminer:></a> 
+		<//B_highlights_langues></h3>
+	<a href="?exec=highlights_edit&edition=oui&id_highlight=#ID_HIGHLIGHT#editer_highlights"><:highlights:modifier:></a> 
+		<B_highlights_langues>	
+			<a  [(#GET{nombre_rub}|oui) onclick="return  confirm('<:highlights:avis_rubriques{nr_rubriques=#GET{nombre_rub}}:>')"] href="[(#SELF|parametre_url{id_highlight,#ID_HIGHLIGHT}|parametre_url{eliminer_highlight,oui}|parametre_url{eliminer_langue,''})]" class="ajax">
+			| <:highlights:eliminer_tout:></a> 					
+	</li>
+</BOUCLE_highlights>
+</ul>
+</div>
+</B_highlights>
+
+<h2><:highlights:editer_highlights:></h2>
+<div>
+#FORMULAIRE_EDITER_HIGHLIGHT{#ENV{id_highlight}}
+</div>
+<div class="ajax">
+[(#ENV{id_highlight}|oui)#FORMULAIRE_LOGO_HIGHLIGHT{#ENV{id_highlight}}]

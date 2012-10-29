@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Gilles</LastAuthor>
+  <Created>2009-06-24T23:18:59Z</Created>
+  <LastSaved>2009-06-24T23:11:09Z</LastSaved>
+  <Version>11.6568</Version>
+ </DocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>8580</WindowHeight>
+  <WindowWidth>10380</WindowWidth>
+  <WindowTopX>600</WindowTopX>
+  <WindowTopY>45</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s33">
+   <Borders/>
+  </Style>
+  <Style ss:ID="s37">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s38">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s39">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s40">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="2"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+   <Font x:Family="Swiss" ss:Bold="1"/>
+   <Interior ss:Color="#CCFFFF" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s41">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+   <Font x:Family="Swiss" ss:Bold="1"/>
+   <Interior ss:Color="#CCFFFF" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s42">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="2"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+   <Font x:Family="Swiss" ss:Bold="1"/>
+   <Interior ss:Color="#CCFFFF" ss:Pattern="Solid"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="11" ss:ExpandedRowCount="3" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="60">
+   <Column ss:AutoFitWidth="0" ss:Width="33"/>
+   <Column ss:Index="5" ss:AutoFitWidth="0" ss:Width="114.75"/>
+   <Column ss:Index="7" ss:AutoFitWidth="0" ss:Width="76.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="109.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="129"/>
+   <Column ss:AutoFitWidth="0" ss:Width="377.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="232.5"/>
+   <Row ss:Height="13.5">
+    <Cell ss:StyleID="s40"><Data ss:Type="String">LANG</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">DISCIPLINE</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">DATE</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">HEURE</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">TITRE</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">THEME</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">VILLE</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">LIEU</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">ADRESSE</Data></Cell>
+    <Cell ss:StyleID="s41"><Data ss:Type="String">TEXTE</Data></Cell>
+    <Cell ss:StyleID="s42"><Data ss:Type="String">INFORMATIONS COMPLEMENTAIRES</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="172.5">
+    <Cell ss:StyleID="s37"><Data ss:Type="String">[event.lang;block=Row]</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">[event.discipline] </Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">[event.date]</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">[event.heure]</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">[event.titre]</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">[event.theme]</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">[event.ville]</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">[event.lieu]</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">[event.adresse]</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">[event.texte]</Data></Cell>
+    <Cell ss:StyleID="s39"><Data ss:Type="String">[event.complement]</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+    <Cell ss:StyleID="s33"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.4921259845"/>
+    <Footer x:Margin="0.4921259845"/>
+    <PageMargins x:Bottom="0.984251969" x:Left="0.78740157499999996"
+     x:Right="0.78740157499999996" x:Top="0.984251969"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>-3</HorizontalResolution>
+    <VerticalResolution>0</VerticalResolution>
+   </Print>
+   <Selected/>
+   <FreezePanes/>
+   <SplitHorizontal>1</SplitHorizontal>
+   <TopRowBottomPane>1</TopRowBottomPane>
+   <ActivePane>2</ActivePane>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+    </Pane>
+    <Pane>
+     <Number>2</Number>
+     <ActiveCol>3</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="0" ss:ExpandedRowCount="0" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="60"/>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.4921259845"/>
+    <Footer x:Margin="0.4921259845"/>
+    <PageMargins x:Bottom="0.984251969" x:Left="0.78740157499999996"
+     x:Right="0.78740157499999996" x:Top="0.984251969"/>
+   </PageSetup>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

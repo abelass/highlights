@@ -1,0 +1,35 @@
+#CACHE{3600 * 1000}
+<BOUCLE_rub(HIGHLIGHTS_LANGUES){lang}{id_highlight}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<INCLURE{fond=include/head}>
+</head>
+<body>
+<div id="wrap">
+
+    <INCLURE{fond=include/header}>
+    
+    <div id="principal">
+        <div id="header_context">
+        	<div class="header_vide"> </div>
+            #MENU_LANG
+        </div>
+        <div id="contenu">
+        	<!--<h6><:a_la_une:></h6>-->
+            <div class="article" id="article#ID_MOT">
+                <div class="titre">
+                [<h3>(#TITRE|supprimer_numero)</h3>]
+                </div>
+                [(#TEXTE**|decoder_html_utf)]
+            </div>
+        </div>
+    </div>
+    
+    <INCLURE{fond=include/footer}>
+
+</div>
+
+</body>
+</html>
+</BOUCLE_rub>

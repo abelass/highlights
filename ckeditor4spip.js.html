@@ -1,0 +1,184 @@
+#CACHE{0}
+[(#HTTP_HEADER{Content-type: text/javascript[; charset=(#CHARSET)]})]
+
+function HidePortePlume() {
+	$('.spip_barre').css('display', 'none');
+	$('.explication').css('display', 'none');
+	$('.markItUpHeader').css('display', 'none');
+	$('.markItUpTabs').css('display', 'none');
+	$('.markItUpPreview').css('display', 'none');
+	$('.markItUpFooter').css('display', 'none');
+}
+
+function ShowPortePlume() {
+	$('.spip_barre').css('display', '');
+	$('.explication').css('display', '');
+	$('.markItUpHeader').css('display', '');
+	$('.markItUpTabs').css('display', '');
+	$('.markItUpFooter').css('display', '');
+	if ($('.markItUpTabs .previsuVoir').hasClass('on')) {
+		$('.markItUpPreview').css('display', 'block');
+		$('.markItUpEditor').css('display', 'none');
+	} else {
+		$('.markItUpEditor').css('display', 'block');
+		$('.markItUpPreview').css('display', 'none');
+	}
+}
+
+function SpipEditor2CKEditor() {
+	$("#swapeditor").attr('disabled', true).text('Loading...') ;
+	$('#text_area').attr('disabled', true);	
+	$('#text_area_fr').attr('disabled', true);
+	$('#text_area_nl').attr('disabled', true);
+	
+	$.post(CKEDITOR.ckdirRacine + 'spip.php?page=ckspip_convert', 
+		{ text_area: $('#text_area').val(), cvt: 'spip2html' },
+		function (data) {
+			HidePortePlume();
+			$('#text_area').val(data).ckeditor(
+				function (){
+					$('#editmode').val('ckeditor');
+					$('#text_area').attr('disabled', '');
+					$('#swapeditor').text(CKEDITOR.txt_usespipeditor).attr('disabled', '');
+				}, 
+				CKEDITOR.ckConfig
+			);
+		}
+	);	
+	
+	$.post(CKEDITOR.ckdirRacine + 'spip.php?page=ckspip_convert', 
+		{ text_area: $('#text_area_nl').val(), cvt: 'spip2html' },
+		function (data) {
+			HidePortePlume();
+			$('#text_area_nl').val(data).ckeditor(
+				function (){
+					$('#editmode').val('ckeditor');
+					$('#text_area_nl').attr('disabled', '');
+					$('#swapeditor').text(CKEDITOR.txt_usespipeditor).attr('disabled', '');
+				}, 
+				CKEDITOR.ckConfig
+			);
+		}
+	);
+
+
+	$.post(CKEDITOR.ckdirRacine + 'spip.php?page=ckspip_convert', 
+		{ text_area: $('#text_area_fr').val(), cvt: 'spip2html' },
+		function (data) {
+			HidePortePlume();
+			$('#text_area_fr').val(data).ckeditor(
+				function (){
+					$('#editmode').val('ckeditor');
+					$('#text_area_fr').attr('disabled', '');
+					$('#swapeditor').text(CKEDITOR.txt_usespipeditor).attr('disabled', '');
+				}, 
+				CKEDITOR.ckConfig
+			);
+		}
+	);
+	
+	$.post(CKEDITOR.ckdirRacine + 'spip.php?page=ckspip_convert', 
+		{ text_area: $('#text_area_en').val(), cvt: 'spip2html' },
+		function (data) {
+			HidePortePlume();
+			$('#text_area_en').val(data).ckeditor(
+				function (){
+					$('#editmode').val('ckeditor');
+					$('#text_area_en').attr('disabled', '');
+					$('#swapeditor').text(CKEDITOR.txt_usespipeditor).attr('disabled', '');
+				}, 
+				CKEDITOR.ckConfig
+			);
+		}
+	);	
+	
+}
+
+function CKEditor2SpipEditor(editor) {
+	$("#swapeditor").attr('disabled', true).text('Loading...') ;
+	$('#text_area').attr('disabled', true);
+	editor.destroy();
+	$.post(CKEDITOR.ckdirRacine + 'spip.php?page=ckspip_convert',
+		{ text_area: $('#text_area').val(), cvt: 'html2spip' },
+		function (data) {
+			$('#editmode').val('spip');
+			$('#text_area').val(data).attr('disabled', '');
+			ShowPortePlume();
+			$('#swapeditor').text(CKEDITOR.txt_useckeditor).attr('disabled', '');
+		}
+	);
+}
+
+function SwapEditor() {
+	try {
+		CKEditor2SpipEditor($('#text_area').ckeditorGet());
+	} catch(e) {
+		SpipEditor2CKEditor();
+	}
+}
+
+function contexteChange() {
+	var contexte = $("#contexte").val().match(/^([\.#])(.*)$/) ;
+	if (contexte) {
+		if (contexte[1] == "#") { // le contexte est donné via un identifiant
+			$('iframe').contents().find('body').attr('class', '').attr('id', contexte[2]) ;
+		} else { // le contexte est donné via une class
+			$('iframe').contents().find('body').attr('id', '').addClass(contexte[2]) ;
+		}
+	} else { // aucun contexte
+		$('iframe').contents().find('body').attr('id', '').attr('class', '') ;
+	}
+}
+
+function fullInitCKEDITOR(textarea) {
+
+	initCKEDITOR();
+
+	CKEDITOR.on('dialogDefinition', function (ev) {
+		var dialogName = ev.data.name;
+		var dialogDefinition = ev.data.definition;
+		if (dialogName === 'about') {
+			var aboutTab = dialogDefinition.getContents('tab1');
+			aboutTab.add({
+				'type': 'html',
+				'html': '<div style="padding: 0 10px 10px 10px ;">' + CKEDITOR.txt_spipification + '</div>'
+			});
+		}
+		if (dialogName === 'link') {
+			dialogDefinition.removeContents('advanced');
+			//dialogDefinition.removeContents('target');
+	}
+	});
+
+	CKEDITOR.plugins.addExternal('spipdoc', CKEDITOR.ckpluginpath + 'spipdoc/');
+	CKEDITOR.plugins.addExternal('spip', CKEDITOR.ckpluginpath + 'spip/');
+	CKEDITOR.plugins.addExternal('spipsave', CKEDITOR.ckpluginpath + 'spipsave/');
+
+<BOUCLE_si(CONDITION){si #PLUGIN{ITERATEURS}|ou{#SPIP_VERSION|version_compare{'2.2.0','>='}}}>
+<BOUCLE_plugin(DATA){source table,#CONFIG{'ckeditor/plugins'}}>[(#VALEUR{'actif'}|oui)
+	CKEDITOR.plugins.addExternal('#CLE', '#VALEUR{'path'}/');]</BOUCLE_plugin>
+</BOUCLE_si>
+
+	if (textarea) {
+	<!--	$(textarea).ckeditor(CKEDITOR.ckConfig) ;-->
+	} else {
+		if (CKEDITOR.version < CKEDITOR.ckpreferedversion) {
+			$('.text_area').after(
+		'<div class="erreur_message">' + CKEDITOR.txt_versionpreferee.replace(/%2/, CKEDITOR.ckpreferedversion).replace(/%1/, CKEDITOR.version) + '</div>'
+			);
+		}
+
+		$('#text_area').before('<input id="editmode" name="editmode" value="' + CKEDITOR.ckeditmode + '" type="hidden"/>');
+
+		if (CKEDITOR.ckeditmode != 'ckeditor-exclu') {
+			$('label[for=text_area]').append('<button style="margin-left:15px;" type="button" id="swapeditor" onclick="javascript:SwapEditor();">' + (CKEDITOR.ckeditmode=='spip'?CKEDITOR.txt_useckeditor:CKEDITOR.txt_usespipeditor) + '</button>'
+<B_options>				+ '<span style="padding-left:15px;"><:ckeditor:changer_de_contexte:></span>'
+				+ '<select id="contexte" name="contexte" onchange="contexteChange();" style="width:150px;"><option value="" selected><:ckeditor:sans_contexte:></option><BOUCLE_options(POUR){tableau #CONFIG{ckeditor/contextes}|ck_enliste{1}}><option value="[(#VALEUR|table_valeur{0})]">[(#VALEUR|table_valeur{1}|replace{(\.|#)})]</option></BOUCLE_options></select>'</B_options>
+			);
+		}
+
+		if (CKEDITOR.ckeditmode != 'spip') {
+			$(window).load(function () { SpipEditor2CKEditor(); });
+		}
+	}
+}

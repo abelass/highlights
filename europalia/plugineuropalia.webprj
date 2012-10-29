@@ -1,0 +1,51 @@
+<!DOCTYPE webproject>
+<webproject>
+  <project type="Local" name="plugin europalia" encoding="utf8" >
+    <upload/>
+    <author></author>
+    <email></email>
+    <defaultDTD>-//W3C//DTD XHTML 1.0 Strict//EN</defaultDTD>
+    <item url="action/" uploadstatus="1" />
+    <item url="action/export_xls.php" uploadstatus="1" />
+    <item url="balise/" uploadstatus="1" />
+    <item url="balise/calendrier_jours_en_ligne.php" uploadstatus="1" />
+    <item url="exec/" uploadstatus="1" />
+    <item url="exec/_naviguer.php" uploadstatus="1" />
+    <item url="formulaires/" uploadstatus="1" />
+    <item url="formulaires/calendrier_jours_en_ligne.html" uploadstatus="1" />
+    <item url="formulaires/editer_evenement.html" uploadstatus="1" />
+    <item url="formulaires/editer_evenement.php" uploadstatus="1" />
+    <item url="formulaires/_filtre_events_expo_.html" uploadstatus="1" />
+    <item url="formulaires/filtre_events.html" uploadstatus="1" />
+    <item url="formulaires/inc-options-evenements-mots.html" uploadstatus="1" />
+    <item url="formulaires/inc-options-evenements-mots_simple.html" uploadstatus="1" />
+    <item url="img_pack/" uploadstatus="1" />
+    <item url="img_pack/icones_barre/" uploadstatus="1" />
+    <item url="img_pack/icones_barre/bleu.jpg" uploadstatus="1" />
+    <item url="img_pack/icones_barre/gray.jpg" uploadstatus="1" />
+    <item url="img_pack/icones_barre/lightgray.jpg" uploadstatus="1" />
+    <item url="img_pack/icones_barre/rouge.jpg" uploadstatus="1" />
+    <item url="img_pack/icones_barre/vert.jpg" uploadstatus="1" />
+    <item url="inc/" uploadstatus="1" />
+    <item url="inc/barre_20.php" uploadstatus="1" />
+    <item url="inc/europalia_filtres.php" uploadstatus="1" />
+    <item url="lang/" uploadstatus="1" />
+    <item url="lang/europalia_en.php" uploadstatus="1" />
+    <item url="lang/europalia_fr.php" uploadstatus="1" />
+    <item url="lang/europalia_nl.php" uploadstatus="1" />
+    <item url="modeles/" uploadstatus="1" />
+    <item url="modeles/evenement_vevent.html" uploadstatus="1" />
+    <item url="prive/" uploadstatus="1" />
+    <item url="prive/contenu/" uploadstatus="1" />
+    <item url="prive/contenu/agenda_evenements.html" uploadstatus="1" />
+    <item url="prive/contenu/evenements_article.html" uploadstatus="1" />
+    <item url="prive/contenu/liste-evenements-post.html" uploadstatus="1" />
+    <item url="europalia_fonctions.php" uploadstatus="1" />
+    <item url="europalia_pipelines.php" uploadstatus="1" />
+    <item url="export_.xls" uploadstatus="1" />
+    <item url="export.xls" uploadstatus="1" />
+    <item url="plugin.xml" uploadstatus="1" />
+    <item url="style_prive_defaut.css" uploadstatus="1" />
+    <item url="" uploadstatus="1" />
+  </project>
+</webproject>

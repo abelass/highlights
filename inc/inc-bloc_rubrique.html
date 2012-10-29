@@ -1,0 +1,55 @@
+[(#ENV{monter}|oui) [(#ENV{id_rubrique}|monter_rang)]]
+[(#ENV{descendre}|oui) [(#ENV{id_rubrique}|descendre_rang)]]
+[(#ENV{eliminer_rubrique}|oui)[(#ENV{id_highlight}|supprimer_rubrique{#ENV{id_rubrique}})]]	
+
+
+			<BOUCLE_hl_compte(HIGHLIGHTS_RUBRIQUES){id_rubrique}/>
+			#SET{total_hl,#TOTAL_BOUCLE}
+			<//B_hl_compte>
+<B_hl>
+<div class="cadre cadre-e" style="margin-top: 20px;">
+	<div id="bcbffdde456" class="titrem" ></a>HIGHLIGTS</div>
+
+	<div class="cadre_padding">
+
+		<div id="ta3bacb96" class="bloc_depliable blocdeplie">
+		<div class='cadre cadre-liste'>
+		<table width='100%' cellpadding='2' cellspacing='0' border='0'>
+
+			<tbody>
+
+			
+			<BOUCLE_hl(HIGHLIGHTS_RUBRIQUES highlights_principales) {id_rubrique}{par rang}>
+			
+
+			<tr class='tr_liste'>
+			<td>[(#GET{total_hl}|>{1}|oui)
+				[(#COMPTEUR_BOUCLE|!={1}|oui)
+				<div><a href="[(#SELF|parametre_url{eliminer_rubrique,''}|parametre_url{monter,[(#COMPTEUR_BOUCLE|moins{1})]}|parametre_url{id_highlight,#ID_HIGHLIGHT}|parametre_url{descendre,''})]" class="ajax"><img src="[(#CHEMIN{img/fleche-haut.gif})]" /></a></div>
+				]
+				[(#COMPTEUR_BOUCLE|!={#GET{total_hl}}|oui)
+				<div><a href="[(#SELF|parametre_url{eliminer_rubrique,''}|parametre_url{descendre,[(#COMPTEUR_BOUCLE|plus{1})]}|parametre_url{id_highlight,#ID_HIGHLIGHT}|parametre_url{monter,''})]" class="ajax"><img src="[(#CHEMIN{img/fleche-bas.gif})]" /></a></div> 
+				]
+				] 
+			</td>
+				<BOUCLE_langues(HIGHLIGHTS_LANGUES){id_highlight}>			
+
+			<td class="arial2"><a href="?exec=highlights_edit&amp;id_highlight=#ID_HIGHLIGHT"><b>#TITRE</b></a></td>
+				</BOUCLE_langues>
+			<td class="arial1"><b style="white-space: nowrap;">#ID_HIGHLIGHT</b></td>
+			<td>
+			<a title='Retirer de la liste'  href="[(#SELF|parametre_url{eliminer_rubrique,oui}|parametre_url{monter,''}|parametre_url{monter,''}|parametre_url{id_highlight,#ID_HIGHLIGHT}|parametre_url{descendre,''})]" class="ajax"><img src="#CHEMIN{images/croix-rouge.gif}" alt="X" /></a>
+		</td>						
+				</tr>				
+			</BOUCLE_hl>
+
+			</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+			</B_hl>		
+
+
+
+	

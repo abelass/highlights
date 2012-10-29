@@ -1,0 +1,11 @@
+[(#SET{selected,''})]
+<BOUCLE_ville(MOTS){mots_evenements.id_evenement}{id_groupe}{doublons}>
+	<option value='#ID_MOT' selected="selected">#TITRE</option>
+</BOUCLE_ville>
+
+<BOUCLE_ville2(MOTS){id_groupe}{doublons}{par titre}>
+	<option value='#ID_MOT'>#TITRE</option>
+</BOUCLE_ville2>
+
+
+

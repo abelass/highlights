@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plugin>
+	<nom>Extension Europalia</nom>
+	<auteur>gilles.vincent@gmail.com</auteur>
+	<version>1</version>
+	<version_base>1.0</version_base>
+	<etat>test</etat>
+	<icon>img_pack/agenda-48.png</icon>
+	<description>Plugin dédié à Europalia</description>
+	<prefix>europalia</prefix>
+	<fonctions>europalia_fonctions.php</fonctions>
+    <pipeline>
+        <nom>post_edition</nom>
+        <inclure>europalia_pipelines.php</inclure>
+    </pipeline>
+	<pipeline>
+		<nom>affiche_gauche</nom>
+		<inclure>europalia_pipelines.php</inclure>
+	</pipeline>
+	<pipeline>
+		<nom>rechercher_liste_des_champs</nom>
+		<inclure>europalia_pipelines.php</inclure>
+	</pipeline>	
+	<necessite id="BarreTypoEnrichie" />
+	<necessite id="agenda" version="[2.0;]" />
+	<necessite id="spip_bonux" version="[1.6;]" />
+</plugin>

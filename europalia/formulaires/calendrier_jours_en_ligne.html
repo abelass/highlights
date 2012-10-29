@@ -1,0 +1,27 @@
+#CACHE{360000}
+<div id="bottom_calendar">
+	<table summary="<:icone_calendrier:>">
+		<tbody>
+			<tr>
+				<td align="left"><a
+				class="ajax" href="spip.php?page=agenda&amp;qdate=[(#ENV{qdate,#ENV{date}}|agenda_moisdecal{-1,'Y-m'})]&amp;charge_en_ajax=oui"
+				title="[(#ENV{qdate,#ENV{date}}|agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee)]"><img src="[(#CHEMIN{images/arrow_left.gif})]" alt="previous" /></a> [(#ENV{qdate,#ENV{date}}|affdate_mois_annee)] 
+				<a
+					class="ajax" href="spip.php?page=agenda&amp;qdate=[(#ENV{qdate,#ENV{date}}|agenda_moisdecal{1,'Y-m'})]&amp;charge_en_ajax=oui"
+					title="[(#ENV{qdate,#ENV{date}}|agenda_moisdecal{1,'Y-m'}|affdate_mois_annee)]"><img src="[(#CHEMIN{images/arrow_right.gif})]" alt="next" /></a>
+				</td>
+				#SET{lang_contexte,#LANG}
+				#SET{mois,(#ENV{qdate,#ENV{date}}|substr{0,7})}
+				#SET{nextmois,(#ENV{qdate,#ENV{date}}|agenda_moisdecal{1,'Y-m-01'})}
+				<BOUCLE_calendrier(EVENEMENTS){date_fin < #GET{nextmois}}{date_fin >= #GET{mois}}{inscription=0}>
+					<BOUCLE_lang(ARTICLES){id_article}{lang=#GET{lang_contexte}}> </BOUCLE_lang>[
+					(#DATE_DEBUT|agenda_memo_full{#DATE_FIN,[(#TITRE|addslashes|supprimer_numero)],
+						#DESCRIPTIF,#LIEU,
+						[(#ENV{self}|parametre_url{'qdate',[(#DATE_DEBUT|affdate{'Y-m'})]})]})
+					]</B_lang>
+				</BOUCLE_calendrier>
+				[(#ENV{qdate,#ENV{date}}|agenda_jours_en_ligne)]
+			</tr>
+			</tbody>
+	</table>
+</div>

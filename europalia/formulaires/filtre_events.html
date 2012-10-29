@@ -1,0 +1,62 @@
+#CACHE{3600 * 24 * 50}
+<form action="[(#ENV{url}|non)spip.php]" method="get" id="filtre_events">
+	[(#ENV{url}|non)<input type="hidden" name="page" value="[(#ENV{page,agenda})]" />]
+	<div class="blocs_flottants">
+		<div class="next">
+
+			<select name="qdate">
+				<option value=""><:mois:></option>
+				[(#REM)<!-- Pour des raisons de performance, les options sont en dur -->]
+				#SET{lmois,#ARRAY{1,'2009-09',2,'2009-10',3,'2009-11',4,'2009-12',5,'2010-01',6,'2010-02'}}
+				<BOUCLE_options(POUR){tableau #GET{lmois}}>
+				<option value="[(#VALEUR|affdate{'Y-m'})]"
+					[(#VALEUR|=={#ENV{qdate}}|oui) selected="selected"]
+					>
+					[(#VALEUR|affdate_mois_annee)]
+				</option>
+				</BOUCLE_options>
+			</select>
+		</div>
+		<div class="next">
+			<select name="id_mot">
+				#SET{id_ville,#ENV{id_mot,0}}
+				#SET{liste_villes,#ARRAY}
+				<option value=""><:villes:></option>
+				[(#REM)<!-- Pour des raisons de performance, afficher toutes les villes -->]
+				<BOUCLE_chville(MOTS){id_groupe=6}>
+					#SET_MERGE{liste_villes,#GET{liste_villes},#ARRAY{#TITRE,#ID_MOT}}
+				</BOUCLE_chville>
+				<BOUCLE_dspville(POUR){tableau #GET{liste_villes}}{par cle}>
+					<option value="#VALEUR" [(#GET{id_ville}|=={#VALEUR}|oui)selected="selected"]>#CLE</option>
+				</BOUCLE_dspville>
+			</select>
+		</div>
+		
+		[(#REM) ///TOUJOURS afficher les discipline car sinon on se retrouvé "piégé" lorsqu'on recherche dans l'une d'elles]
+		<div class="next">
+			<select name="id_rubrique">
+				<option value=""><:categories:></option>
+				[(#REM) <!-- Ne pas afficher la rubrique "Expositions" -->]
+				<BOUCLE_rub(RUBRIQUES){id_parent=6}{par num titre}>
+				<option value="#ID_RUBRIQUE" [(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|oui)selected="selected"]>[(#TITRE|supprimer_numero)]</option>
+				</BOUCLE_rub>
+			</select>
+		</div>
+
+		<div class="next">
+			<select name="id_theme">
+				<option value=""><:themes:></option>
+				<BOUCLE_theme(MOTS){id_groupe=5}{par num titre}{id_mot != 460}>
+				<option value="#ID_MOT" [(#ENV{id_theme}|=={#ID_MOT}|oui)selected="selected"]>[(#TITRE|supprimer_numero)]</option>
+				</BOUCLE_theme>
+			</select>
+		</div>
+
+
+	</div>
+	<div class="next">
+		<input type="submit" value="<:rechercher:>"  class="submit" />
+	</div>
+	<div class="clear"><span></span></div>
+</form>
+	

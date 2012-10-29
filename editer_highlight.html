@@ -1,0 +1,236 @@
+#CACHE{0}
+
+[(#ENV{eliminer_rubrique}|oui)
+[(#ENV{id_highlight}|supprimer_rubrique{#ENV{eliminer_rubrique}})]
+]
+
+<?php	
+if (!defined('_DIR_PLUGIN_FCKEDITOR')){
+	$p=explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__))));
+	define('_DIR_PLUGIN_FCKEDITOR',(_DIR_PLUGINS.end($p)."/"));
+}
+
+include_once (_DIR_PLUGIN_FCKEDITOR."fckeditor/fckeditor.php")
+?>
+	<div class="formulaire_spip formulaire_editer" id="editer_highlights">
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	<form action="#ENV{action}" method="post"><div>
+    	#ACTION_FORMULAIRE{#ENV{action}}
+
+    	<ul>
+    	
+    	      #SET{erreurs,#ENV**{erreurs}|table_valeur{titre_fr}}
+        	<li class="edit_titre_fr[ (#GET{erreurs}|oui)erreur]">
+           	 <label for="titre_fr"><:highlights:titre_fr:></label>
+            	[<span class='erreur_message'>(#GET{erreurs})</span>]
+            	<input style="width:100%;" type='text' name='titre_fr' id='titre_fr' value="#ENV{titre_fr}" />
+       	 	</li>
+       	 	 #SET{erreurs,#ENV**{erreurs}|table_valeur{titre_nl}}
+        	<li class="edit_titre_nl[ (#GET{erreurs}|oui)erreur]">
+           	 <label for="titre_nl"><:highlights:titre_nl:></label>
+            	[<span class='erreur_message'>(#GET{erreurs})</span>]
+            	<input style="width:100%;"  type='text' name='titre_nl' id='titre_nl' value="#ENV{titre_nl}" />
+       	 	</li>
+       	 	#SET{erreurs,#ENV**{erreurs}|table_valeur{titre_en}}
+        	<li class="edit_titre_en[ (#GET{erreurs}|oui)erreur]">
+           	 <label for="titre_en"><:highlights:titre_en:></label>
+            	[<span class='erreur_message'>(#GET{erreurs})</span>]
+            	<input style="width:100%;"  type='text' name='titre_en' id='titre_en' value="#ENV{titre_en}" />
+       	 	</li>
+			<li>
+				<B_rubriques>
+				<ul>
+				<li class="editer_parent">
+	    		<label for="id_parent">Ce document est lié à</label>
+	   				<ul class="item_picked">
+				<BOUCLE_rubriques(HIGHLIGHTS_RUBRIQUES rubriques){id_highlight}>
+						<li class="article">[(#TITRE|supprimer_numero)]<a href="[(#SELF|parametre_url{eliminer_rubrique,#ID_RUBRIQUE})]" class="ajax"><img src="../plugins/spip-bonux/img_pack/item-remove.png"></a><span class="sep">, </span></li>
+				</BOUCLE_rubriques>
+					</ul>
+				</li>
+				</ul>
+				</B_rubriques>
+			[(#VAL|chercher_rubrique{[(#ENV{id_rubrique}|intval)],0,'encheres_highlights',#ENV{id_secteur},#ENV**{config}|table_valeur{restreint},0,form_simple})]
+			<p class="boutons"><input type="submit" class="submit" value="<:pass_ok:>" /></p>
+			</li> 
+			
+			        	
+        	<li class="editer">
+ 
+            <label for="type"><:highlights:type:></label>
+    			<div class="choix">
+        		<input type='radio' class="radio" name='type' value='url' id='type_url'  [ (#ENV{type}|=={url}|oui)checked="checked"] />
+        		<label for='prix_achat_inmediat'><:highlights:url:></label>
+   			</div>
+    		<div class="choix">
+        		<input type='radio' class="radio" name='type' value='propre' id='type_propre' [ (#ENV{type}|=={propre}|oui)checked="checked"] })] />
+        		<label for='type_occasion'><:highlights:propre:></label>
+   			</div>
+			</li>
+			   	
+        	#SET{erreurs,#ENV**{erreurs}|table_valeur{nouvelle_fenetre}}
+        	<li class="editer_nouvelle_fenetre" id="fenetre">
+			<label><:highlights:ouverture_higlight:></label>
+    			<div class="choix">
+            <input type='checkbox' class="checkbox"   name='nouvelle_fenetre' id='nouvelle_fenetre' [ (#ENV{nouvelle_fenetre}|oui)checked="checked"] />
+            <label for="nouvelle_fenetre"><:highlights:nouvelle_fenetre:><br/></label>
+				</div>  
+        	</li>
+   			<li class="editer_texte" id="url">
+   			 #SET{erreurs,#ENV**{erreurs}|table_valeur{titre_fr}}
+
+           	 <label for="url_fr"><:highlights:url_fr:></label>
+            	[<span class='erreur_message'>(#GET{erreurs})</span>]
+            	<input style="width:100%;" type='text' name='url_fr' id='url_fr' value="#ENV{url_fr}" />
+
+   			 #SET{erreurs,#ENV**{erreurs}|table_valeur{titre_nl}}
+
+           	 <label for="url_nl"><:highlights:url_nl:></label>
+            	[<span class='erreur_message'>(#GET{erreurs})</span>]
+            	<input style="width:100%;" type='text' name='url_nl' id='url_nl' value="#ENV{url_nl}" />
+
+       	 	#SET{erreurs,#ENV**{erreurs}|table_valeur{titre_en}}
+
+           	 <label for="url_en"><:highlights:url_en:></label>
+            	[<span class='erreur_message'>(#GET{erreurs})</span>]
+            	<input style="width:100%;" type='text' name='url_en' id='url_en' value="#ENV{url_en}" />
+   	 	
+   			</li>
+
+			<li class="editer_texte"  id="propre_fr">
+   			#SET{erreurs,#ENV**{erreurs}|table_valeur{titre_fr}}
+           	 <label for="texte_fr"><:highlights:texte_fr:></label>
+<?php
+$texte_fr =	'[(#ENV{texte_fr}|html_entity_decode|propre|typo|replace{',&#x27;})]';
+$texte_nl =	'[(#ENV{texte_nl}|html_entity_decode)]';
+$texte_en =	'[(#ENV{texte_en}|html_entity_decode)]';
+?>
+           	 
+<?php
+$oFCKeditor = new FCKeditor('texte_fr') ;
+$sBasePath = _DIR_PLUGIN_FCKEDITOR.'fckeditor/' ;
+$oFCKeditor->BasePath = $sBasePath ;
+			$oFCKeditor->Config['AutoDetectLanguage'] = false;
+			$oFCKeditor->Config['DefaultLanguage'] = 'fr' ;
+			$oFCKeditor->Config['FirefoxSpellChecker'] = true;
+			$oFCKeditor->Config['CustomConfigurationsPath'] = '../../fckconfig.js' ;
+			$oFCKeditor->Config['SiteSPIPImg'] = $flux['args']['contexte']['config']['adresse_site'].'/IMG/' ;
+			$oFCKeditor->Config['vignettes'] = $flux['args']['contexte']['config']['adresse_site'].'/prive/vignettes/' ;
+			$q = spip_query("SELECT fichier FROM spip_documents LEFT JOIN spip_documents_liens USING (id_document)  WHERE id_objet = '".$_GET['id_'.$objet]."' AND objet = '".$objet."'") ;
+			$fichiers = array() ;
+			while($r = spip_fetch_array($q)) {
+				$fichiers[] = $r['fichier'] ;
+			}
+			$oFCKeditor->Config['docs'] = join('|',$fichiers) ;
+			$toolbar = lire_config("fckeditor/barre_outils") ;
+			$toolbar = ($toolbar?$toolbar:'Default') ;
+			$oFCKeditor->ToolbarSet = $toolbar ;
+			$skin = lire_config("fckeditor/skin") ;
+			$skin = ($skin?$skin:'default') ;
+			$oFCKeditor->Config['SkinPath'] = 'skins/'.$skin.'/' ;
+			$oFCKeditor->Height = ($taille = lire_config('fckeditor/taille'))?$taille:500 ;
+			$oFCKeditor->Value = $texte_fr ;
+			$oFCKeditor->CreateHtml ;
+			$texte_fr = $oFCKeditor;
+?>
+           </li>
+           <li class="editer_texte" id="propre_nl">	
+           	 <label for="texte_nl"><:highlights:texte_nl:></label><br class="nettoyeur"/>
+<?php
+$oFCKeditor = new FCKeditor('texte_nl') ;
+$sBasePath = _DIR_PLUGIN_FCKEDITOR.'fckeditor/' ;
+$oFCKeditor->BasePath = $sBasePath ;
+			$oFCKeditor->Config['AutoDetectLanguage'] = false;
+			$oFCKeditor->Config['DefaultLanguage'] = 'fr' ;
+			$oFCKeditor->Config['FirefoxSpellChecker'] = true;
+			$oFCKeditor->Config['CustomConfigurationsPath'] = '../../fckconfig.js' ;
+			$oFCKeditor->Config['SiteSPIPImg'] = $flux['args']['contexte']['config']['adresse_site'].'/IMG/' ;
+			$oFCKeditor->Config['vignettes'] = $flux['args']['contexte']['config']['adresse_site'].'/prive/vignettes/' ;
+			$q = spip_query("SELECT fichier FROM spip_documents LEFT JOIN spip_documents_liens USING (id_document)  WHERE id_objet = '".$_GET['id_'.$objet]."' AND objet = '".$objet."'") ;
+			$fichiers = array() ;
+			while($r = spip_fetch_array($q)) {
+				$fichiers[] = $r['fichier'] ;
+			}
+			$oFCKeditor->Config['docs'] = join('|',$fichiers) ;
+
+			$toolbar = lire_config("fckeditor/barre_outils") ;
+			$toolbar = ($toolbar?$toolbar:'Default') ;
+			$oFCKeditor->ToolbarSet = $toolbar ;
+			$skin = lire_config("fckeditor/skin") ;
+			$skin = ($skin?$skin:'default') ;
+			$oFCKeditor->Config['SkinPath'] = 'skins/'.$skin.'/' ;
+			$oFCKeditor->Height = ($taille = lire_config('fckeditor/taille'))?$taille:500 ;
+$oFCKeditor->Value = $texte_nl ;
+$oFCKeditor->Create() ;
+?>
+
+           	 <label for="texte_en" id="propre_en"><:highlights:texte_en:></label><br class="nettoyeur"/>
+
+ <?php
+$oFCKeditor = new FCKeditor('texte_en') ;
+$sBasePath = _DIR_PLUGIN_FCKEDITOR.'fckeditor/' ;
+$oFCKeditor->BasePath = $sBasePath ;
+			$oFCKeditor->Config['AutoDetectLanguage'] = false;
+			$oFCKeditor->Config['DefaultLanguage'] = 'fr' ;
+			$oFCKeditor->Config['FirefoxSpellChecker'] = true;
+			$oFCKeditor->Config['CustomConfigurationsPath'] = '../../fckconfig.js' ;
+			$oFCKeditor->Config['SiteSPIPImg'] = $flux['args']['contexte']['config']['adresse_site'].'/IMG/' ;
+			$oFCKeditor->Config['vignettes'] = $flux['args']['contexte']['config']['adresse_site'].'/prive/vignettes/' ;
+			$q = spip_query("SELECT fichier FROM spip_documents LEFT JOIN spip_documents_liens USING (id_document)  WHERE id_objet = '".$_GET['id_'.$objet]."' AND objet = '".$objet."'") ;
+			$fichiers = array() ;
+			while($r = spip_fetch_array($q)) {
+				$fichiers[] = $r['fichier'] ;
+			}
+			$oFCKeditor->Config['docs'] = join('|',$fichiers) ;
+
+			$toolbar = lire_config("fckeditor/barre_outils") ;
+			$toolbar = ($toolbar?$toolbar:'Default') ;
+			$oFCKeditor->ToolbarSet = $toolbar ;
+			$skin = lire_config("fckeditor/skin") ;
+			$skin = ($skin?$skin:'default') ;
+			$oFCKeditor->Config['SkinPath'] = 'skins/'.$skin.'/' ;
+			$oFCKeditor->Height = ($taille = lire_config('fckeditor/taille'))?$taille:500 ;
+$oFCKeditor->Value = $texte_en ;
+$oFCKeditor->Create() ;
+?>
+   			</li> 
+ 
+ 
+			
+   			<script type="text/javascript">
+				$(document).ready(function(){
+				[(#ENV{type}|=={propre}|non)
+ 				 $("#propre_fr").css("display","none");
+ 				 $("#propre_nl").css("display","none"); 	
+  				 $("#propre_en").css("display","none");]
+				[(#ENV{type}|=={url}non)  				  					 			 
+   				 $("#url").css("display","none"); 
+     			$("#fenetre").css("display","none");]  				   				 
+        		$(".radio").click(function(){
+    			if ($('input[name=type]:checked').val() == "url" ) {
+        		$("#url").slideDown("fast"); //Slide Down Effect
+        		$("#fenetre").slideDown("fast"); //Slide Down Effect        		
+       		 } else {
+           	 $("#url").slideUp("fast");	//Slide Up Effect
+           	 $("#fenetre").slideUp("fast");	//Slide Up Effect           	 
+        	}
+        	if ($('input[name=type]:checked').val() == "propre" ) {
+        		$("#propre_fr").slideDown("fast"); //Slide Down Effect
+        		$("#propre_nl").slideDown("fast"); //Slide Down Effect        
+        		$("#propre_en").slideDown("fast"); //Slide Down Effect        		
+       		 } else {
+           	 $("#propre_fr").slideUp("fast");	//Slide Up Effect
+           	 $("#propre_nl").slideUp("fast");	//Slide Up Effect
+           	 $("#propre_en").slideUp("fast");	//Slide Up Effect           	     	 
+        	}
+    		 });
+			});
+			</script>  			
+			</li>
+
+
+</ul>
+    	<p class="boutons"><input type="submit" class="submit" value="<:pass_ok:>" /></p>
+	</div>
+	</form>

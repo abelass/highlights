@@ -1,0 +1,48 @@
+<plugin>
+	<nom>Highlights</nom>
+	<auteur>[Rainer Müller->websolutions@mychacra.net]</auteur>
+	<licence>GNU/GL</licence>
+	<version>0.2.0</version>
+	<description>
+	Gestion des highlights pour Europalia
+	</description>
+	<etat>test</etat>
+	<prefix>highlights</prefix>
+	<icon>img/logo.png</icon>
+	<necessite id="SPIP" version="[2.0;)" />
+	<utilise id="SPIP" version="[2.0;)" />	
+	<version_base>0.1</version_base>
+	<fonctions>highlights_fonctions.php</fonctions>
+	<pipeline>
+		<nom>declarer_tables_principales</nom>
+		<inclure>base/tables_principales.php</inclure>
+	</pipeline>
+	
+	<pipeline>
+		<nom>declarer_tables_auxiliaires</nom>
+		<inclure>base/tables_auxiliaires.php</inclure>
+	</pipeline>	
+	<pipeline>
+		<nom>declarer_tables_interfaces</nom>
+		<inclure>base/tables_interfaces.php</inclure>
+		<action>init_tables_interfaces</action>
+	</pipeline>
+
+	<bouton id="highlights_edit" parent="naviguer">
+		<icone>img/logo_petit.png</icone>
+        <titre>Highlights</titre>   
+		<url>highlights_edit</url>   
+    </bouton>
+
+	<pipeline>
+		<nom>affiche_milieu</nom>
+		<inclure>highlights_pipeline.php</inclure>
+	</pipeline>	
+	
+	<pipeline>
+		<nom>header_prive</nom>
+		<inclure>highlights_pipeline.php</inclure>
+	</pipeline>	
+	
+	<install>base/installation.php</install>
+</plugin>
